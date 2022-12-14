@@ -1,3 +1,4 @@
+const val = 9
 
 var Actualdata = {
     "Worksheet": [
@@ -224,7 +225,7 @@ var Actualdata = {
             "Image-url": "http://images.amazon.com/images/P/0375406328.01.MZZZZZZZ.jpg"
         },
         {
-            "Title": "To Kill a Mockingbird",
+			"Title": "To Kill a Mockingbird",
             "Author": "Harper Lee",
             "Year": "1988",
             "Image-url": "http://images.amazon.com/images/P/0446310786.01.MZZZZZZZ.jpg"
@@ -263,25 +264,25 @@ var Actualdata = {
 }
 
 
-function yourfunction() { 
-	var org = document.getElementById("contain");
-	showData(Actualdata["Worksheet"]);
-
+function yourfunction(val) { 
+	showData(Actualdata["Worksheet"].slice(1,val));
 }
+
+
 
 var temp = document.getElementById("contain");
 const t = temp.innerHTML
+let inc = 1;
 function showData(data){
+	inc+=1
 	temp.innerHTML = t
 	if (data.length==0){
 		temp.innerHTML = "<h4>Book Not Found!!</h4>"
 		document.getElementById("count").innerHTML = "No. of Books: 0"
 	}
-	// temp.innerHTML = " "
 	for (let j=0; j<data.length; j++){
 		if (j==0){
 			document.getElementById("book").style.display = "none"
-			console.log(temp.firstElementChild)
 		}
 		document.getElementById("count").innerHTML = "No. of Books: "+data.length
 		var temp1 = document.getElementById("book");
@@ -304,10 +305,31 @@ form.addEventListener("submit", function (event) {
 	}
 	showData(searchData);
 });
+var more = document.getElementById("more");
+more.onclick = function(){yourfunction(val*inc-inc+1)};
+
+window.onload = yourfunction(val);
 
 
 
-window.onload = yourfunction;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -316,19 +338,6 @@ window.onload = yourfunction;
 
 
 "use strict";
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 (function () {
 	// Global variables
